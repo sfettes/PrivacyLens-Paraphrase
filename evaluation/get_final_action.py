@@ -178,7 +178,7 @@ def main():
             user_email=data[i]['trajectory']['user_email'],
             user_instruction=data[i]['trajectory']['user_instruction'],
             toolkits=data[i]['trajectory']['toolkits'],
-            executable_trajectory=data[i]['trajectory']['executable_trajectory'],
+            executable_trajectory=data[i]['trajectory']['executable_trajectory'], # TODO: wrap this in a function call to paraphrase the tool call data
             final_action=data[i]['trajectory']['final_action']
         )
 

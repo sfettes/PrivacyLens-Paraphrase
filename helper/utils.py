@@ -133,6 +133,9 @@ def claude_chat_completion_with_retry(engine, messages, **kwargs):
     )
     return response
 
+def redact_sensitive_tool_call(self, tool_call_output: str, vllm_engine: VLLM): 
+    return LLMResult(generations=[""])
+
 
 class SurgeryKitUnitTest:
     def __init__(self,
