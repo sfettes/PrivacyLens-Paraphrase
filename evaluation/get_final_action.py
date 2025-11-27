@@ -21,7 +21,7 @@ from toolemu.prompts.agent import *
 from toolemu.tools import get_toolkits_by_names
 
 sys.path.append('../helper')
-from utils import openai_chat_completion_with_retry, print_api_usage, VLLM, claude_chat_completion_with_retry
+from utils import openai_chat_completion_with_retry, print_api_usage, VLLM, claude_chat_completion_with_retry, redact_sensitive_tool_call
 
 
 def prepare_args():
@@ -178,7 +178,7 @@ def main():
             user_email=data[i]['trajectory']['user_email'],
             user_instruction=data[i]['trajectory']['user_instruction'],
             toolkits=data[i]['trajectory']['toolkits'],
-            executable_trajectory=data[i]['trajectory']['executable_trajectory'], # TODO: wrap this in a function call to paraphrase the tool call data
+            executable_trajectory= redact_sensitive_tool_call(data[i]['trajectory']['executable_trajectory'], vllm_engine), # TODO: wrap this in a function call to paraphrase the tool call data
             final_action=data[i]['trajectory']['final_action']
         )
 
